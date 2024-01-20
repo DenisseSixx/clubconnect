@@ -1,3 +1,5 @@
+import 'package:clubconnect/screens/claseseve.dart';
+import 'package:clubconnect/screens/gastos.dart';
 import 'package:flutter/material.dart';
 import 'screens/screens.dart';
 
@@ -31,7 +33,9 @@ class MyApp extends StatelessWidget {
       'registro':(_)=> Registro(),
       'perfil':(_)=>Perfil(), 
       'ajustes': (_)=> settings(), 
-      'notificaciones':(_)=> noti()
+      'notificaciones':(_)=> noti(),
+      'claseve':(_)=> even(),
+      'gastos':(_)=> gastos()
       }
     );
   }

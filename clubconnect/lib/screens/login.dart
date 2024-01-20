@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:clubconnect/widgets/widgets.dart';
 
 import '../ui/input_decoration.dart';
 
@@ -9,87 +10,96 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-            height: double.infinity,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Color(0xFFA7FCB8), Color(0xFFFFF4E2)],
-                stops: [0, 1],
-                begin: AlignmentDirectional(0.87, -1),
-                end: AlignmentDirectional(-0.87, 1),
+      body: Container(
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFFA7FCB8), Color(0xFFFFF4E2)],
+            stops: [0, 1],
+            begin: AlignmentDirectional(0.87, -1),
+            end: AlignmentDirectional(-0.87, 1),
+          ),
+        ),
+        alignment: AlignmentDirectional(0, -1),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 70, 0, 32),
+                child: Container(
+                  width: 200,
+                  height: 70,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  alignment: AlignmentDirectional(0, 0),
+                  child: const Text(
+                    'ClubConnect',
+                    style: TextStyle(
+                      fontFamily: 'Outfit',
+                      color: Colors.white,
+                      fontSize: 34,
+                    ),
+                  ),
+                ),
               ),
-            ),
-            alignment: AlignmentDirectional(0, -1),
-            child: SingleChildScrollView(
-                child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 70, 0, 32),
-                    child: Container(
-                      width: 200,
-                      height: 70,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      alignment: AlignmentDirectional(0, 0),
-                      child: const Text(
-                        'ClubConnect',
-                        style: TextStyle(
-                          fontFamily: 'Outfit',
-                          color: Colors.white,
-                          fontSize: 34,
-                        ),
+              Padding(
+                padding: EdgeInsets.all(16),
+                child: Container(
+                  width: double.infinity,
+                  constraints: BoxConstraints(
+                    maxWidth: 570,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 4,
+                        color: Color(0x33000000),
+                        offset: Offset(0, 2),
+                      )
+                    ],
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Align(
+                    alignment: AlignmentDirectional(0, 0),
+                    child: Padding(
+                      padding: EdgeInsets.all(32),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Bienvenido',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontFamily: 'Outfit ',
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 12, 0, 24),
+                            child: Text(
+                              'Complete la información a continuación para acceder a su cuenta.',
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          _LoginForm(), // Agregué _LoginForm como un widget
+                        ],
                       ),
                     ),
                   ),
-                  Padding(
-                      padding: EdgeInsets.all(16),
-                      child: Container(
-                        width: double.infinity,
-                        constraints: BoxConstraints(
-                          maxWidth: 570,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 4,
-                              color: Color(0x33000000),
-                              offset: Offset(0, 2),
-                            )
-                          ],
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Align(
-                            alignment: AlignmentDirectional(0, 0),
-                            child: Padding(
-                                padding: EdgeInsets.all(32),
-                                child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        'Bienvenido',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                            fontFamily: 'Outfit ',
-                                            fontSize: 25,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 12, 0, 24),
-                                        child: Text(
-                                            'Complete la información a continuación para acceder a su cuenta.',
-                                            textAlign: TextAlign.center),
-                                      ),
-                                      _LoginForm()
-                                    ]))),
-                      ))
-                ]))));
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -101,7 +111,6 @@ class _LoginForm extends StatelessWidget {
         autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Column(
           children: [
-            //  SizedBox(height: 32.0),
             TextFormField(
               autocorrect: false,
               keyboardType: TextInputType.emailAddress,
@@ -127,22 +136,18 @@ class _LoginForm extends StatelessWidget {
                     : 'La contraseña debe de ser de 6 caracteres';
               },
             ),
-            // SizedBox(height: 10.0),
             SizedBox(
               width: double.infinity,
               child: Padding(
                 padding: EdgeInsets.only(top: 20, bottom: 20),
                 child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, 'home');
-                    },
-                    child: Text('Iniciar Sesión')),
+                  onPressed: () {
+                    Navigator.pushNamed(context, 'home');
+                  },
+                  child: Text('Iniciar Sesión'),
+                ),
               ),
             ),
-
-            // ElevatedButton(onPressed: Navigator.push(context, MaterialPageRoute(builder: (context)=> const homepage())), child: Text('Iniciar Sesion'))],
-            //  SizedBox(height: 10.0,),
-
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
               child: RichText(
@@ -154,24 +159,22 @@ class _LoginForm extends StatelessWidget {
                       style: TextStyle(),
                     ),
                     TextSpan(
-                        text: 'Registrate',
-                        style: TextStyle(
-                          fontFamily: 'Readex Pro',
-                          color: Colors.blueGrey,
-                          fontWeight: FontWeight.w600,
-                        ),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            ; //cambia el estado de musica
-
-                            Navigator.pushNamed(context, 'registro');
-                          })
+                      text: 'Registrate',
+                      style: TextStyle(
+                        fontFamily: 'Readex Pro',
+                        color: Colors.blueGrey,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.pushNamed(context, 'registro');
+                        },
+                    )
                   ],
                   style: TextStyle(color: Colors.black),
                 ),
               ),
-            )
-            //Column(children: [Text('¿No tienes una cuenta?'), TextButton(onPressed: null, child: Text('Registrarse'))],)
+            ),
           ],
         ),
       ),
