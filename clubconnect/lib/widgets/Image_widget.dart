@@ -14,18 +14,28 @@ class ImagePickerWidget extends StatefulWidget {
 class _ImagePickerWidgetState extends State<ImagePickerWidget> {
   File? imageFile;
 
-  @override
+ @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         const SizedBox(height: 20.0,),
-        imageFile == null
-            ? Image.asset('assets/no_profile_image.jpeg', height: 300.0, width: 300.0,)
-            : ClipRRect(
-                borderRadius: BorderRadius.circular(150.0),
-                child: Image.file(imageFile!, height: 300.0, width: 300.0, fit: BoxFit.fill,)
-              ),
-        const SizedBox(height: 20.0,),
+        Container(
+          width: 160.0,
+          height: 160.0,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(
+              color: Colors.white, // Puedes ajustar el color del marco
+              width: 5.0, // Puedes ajustar el ancho del marco
+            ),
+          ),
+          child: ClipOval(
+            child: imageFile == null
+                ? Image.asset('assets/no_profile_image.jpeg', height: 150.0, width: 150.0)
+                : Image.file(imageFile!, height: 150.0, width: 150.0, fit: BoxFit.fill),
+          ),
+        ),
+        const SizedBox(height: 10.0,),
         ElevatedButton(
           onPressed: () async {
             Map<Permission, PermissionStatus> statuses = await [
@@ -37,7 +47,7 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
               print('no permission provided');
             }
           },
-          child: Text('Select Image'),
+          child: Text('Cambiar foto'),
         ),
       ],
     );

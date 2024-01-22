@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'widgets.dart';
+
 class MenuDrawer extends StatelessWidget {
   const MenuDrawer({super.key});
 
@@ -9,17 +11,18 @@ class MenuDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          DrawerHeader(
-            decoration: BoxDecoration(
+          DrawerHeader( child: CoverImage(),
+           /* decoration: BoxDecoration(
               color: Colors.teal,
             ),
-            child: Text(
+           
+             Text(
               'CountryClub',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 24,
               ),
-            ),
+            ),*/
           ),
           ListTile(
               leading: Icon(Icons.account_circle),

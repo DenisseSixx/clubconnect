@@ -27,7 +27,7 @@ class ImageHandler {
                         Icon(Icons.image, size: 60.0,),
                         SizedBox(height: 12.0),
                         Text(
-                          "Gallery",
+                          "Galeria",
                           textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 16, color: Colors.black),
                         )
@@ -47,7 +47,7 @@ class ImageHandler {
                           Icon(Icons.camera_alt, size: 60.0,),
                           SizedBox(height: 12.0),
                           Text(
-                            "Camera",
+                            "Camara",
                             textAlign: TextAlign.center,
                             style: TextStyle(fontSize: 16, color: Colors.black),
                           )
@@ -109,13 +109,13 @@ class ImageHandler {
         CropAspectRatioPreset.ratio16x9
       ],
       uiSettings: [AndroidUiSettings(
-        toolbarTitle: "Image Cropper",
-        toolbarColor: Colors.deepOrange,
+        toolbarTitle: "Recortar foto",
+        toolbarColor: Colors.greenAccent,
         toolbarWidgetColor: Colors.white,
         initAspectRatio: CropAspectRatioPreset.original,
         lockAspectRatio: false),
         IOSUiSettings(
-          title: "Image Cropper",
+          title: "Recortar foto",
         )
       ],
     );
