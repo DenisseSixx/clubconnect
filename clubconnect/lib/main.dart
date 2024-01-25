@@ -1,3 +1,4 @@
+import 'package:clubconnect/screens/asistencias.dart';
 import 'package:clubconnect/screens/claseseve.dart';
 import 'package:clubconnect/screens/gastos.dart';
 import 'package:flutter/material.dart';
@@ -28,14 +29,15 @@ class MyApp extends StatelessWidget {
          primaryColor: Colors.cyan
       ),
       routes: {
-      'login':(_)=> Login(),
-      'home':(_)=> home(),
-      'registro':(_)=> Registro(),
-      'perfil':(_)=>Perfil(), 
-      'ajustes': (_)=> settings(), 
-      'notificaciones':(_)=> noti(),
-      'claseve':(_)=> even(),
-      'gastos':(_)=> gastos()
+      'login':(_)=> const Login(),
+      'home':(_)=> const home(),
+      'registro':(_)=> const Registro(),
+      'perfil':(_)=>const Perfil(), 
+      'ajustes': (_)=> const settings(), 
+      'notificaciones':(_)=> const noti(),
+      'claseve':(_)=> const even(),
+      'gastos':(_)=> const gastos(), 
+      'asistencias':(_)=> const Asistencias(),
       }
     );
   }

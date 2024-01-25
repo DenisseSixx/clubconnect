@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import '../widgets/CoverImage_widget.dart';
-import '../widgets/ImageHandler_widget.dart';
-import '../widgets/Image_widget.dart';
 import 'package:clubconnect/widgets/widgets.dart';
 
 class Perfil extends StatelessWidget {
@@ -11,16 +8,16 @@ class Perfil extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Perfil'),
+        title: const Text('Perfil'),
       ),
       body: Stack(
         alignment: Alignment.center,
         children: [
           Container(
               color: Colors.black.withOpacity(0.5), // Ajusta la opacidad según tus necesidades
-              child: CoverImage(),
+              child: const CoverImage(),
             ),
-          Positioned.fill(
+          const Positioned.fill(
             child: ImagePickerWidget(),
           ),
         ]

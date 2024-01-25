@@ -1,0 +1,5 @@
+abstract class IDatos{
+  Future<List<dynamic>> Buscar(String http_s, String urlBase, String ruta, String metodo, Map<String, dynamic>? parametros);
+  Future<bool> Agregar(String http_s, String urlBase, String ruta, String metodo, Map<String, dynamic> parametros);
+  Future<bool> Guardar(String http_s, String urlBase, String ruta, String metodo, Map<String, dynamic> parametros);
+}

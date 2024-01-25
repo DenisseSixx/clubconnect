@@ -20,7 +20,7 @@ class _LoginForm extends StatelessWidget {
                 prefixIcon: Icons.wallet_membership_rounded,
               ),
             ),
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             TextFormField(
               autocorrect: false,
               obscureText: true,
@@ -40,12 +40,12 @@ class _LoginForm extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: Padding(
-                padding: EdgeInsets.only(top: 20, bottom: 20),
+                padding: const EdgeInsets.only(top: 20, bottom: 20),
                 child: ElevatedButton(
                     onPressed: () {
                       Navigator.pushNamed(context, 'home');
                     },
-                    child: Text('Iniciar Sesión')),
+                    child: const Text('Iniciar Sesión')),
               ),
             ),
 
@@ -53,30 +53,30 @@ class _LoginForm extends StatelessWidget {
             //  SizedBox(height: 10.0,),
 
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
               child: RichText(
                 textScaleFactor: MediaQuery.of(context).textScaleFactor,
                 text: TextSpan(
                   children: [
-                    TextSpan(
+                    const TextSpan(
                       text: '¿No tienes una cuenta? ',
                       style: TextStyle(),
                     ),
                     TextSpan(
                         text: 'Registrate',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontFamily: 'Readex Pro',
                           color: Colors.blueGrey,
                           fontWeight: FontWeight.w600,
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            ; //cambia el estado de musica
+                           
 
                             Navigator.pushNamed(context, 'registro');
                           })
                   ],
-                  style: TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.black),
                 ),
               ),
             )

@@ -18,21 +18,21 @@ class Registro extends StatelessWidget {
                 end: AlignmentDirectional(-0.87, 1),
               ),
             ),
-            alignment: AlignmentDirectional(0, -1),
+            alignment: const AlignmentDirectional(0, -1),
             child: SingleChildScrollView(
                 child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 70, 0, 32),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 70, 0, 32),
                     child: Container(
                       width: 200,
                       height: 70,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
                       ),
-                      alignment: AlignmentDirectional(0, 0),
+                      alignment: const AlignmentDirectional(0, 0),
                       child: const Text(
                         'ClubConnect',
                         style: TextStyle(
@@ -44,16 +44,16 @@ class Registro extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                      padding: EdgeInsets.all(16),
+                      padding: const EdgeInsets.all(16),
                       child: Container(
                         width: double.infinity,
-                        constraints: BoxConstraints(
+                        constraints: const BoxConstraints(
                           maxWidth: 570,
                         ),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           boxShadow: [
-                            BoxShadow(
+                            const BoxShadow(
                               blurRadius: 4,
                               color: Color(0x33000000),
                               offset: Offset(0, 2),
@@ -62,15 +62,15 @@ class Registro extends StatelessWidget {
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Align(
-                            alignment: AlignmentDirectional(0, 0),
+                            alignment: const AlignmentDirectional(0, 0),
                             child: Padding(
-                                padding: EdgeInsets.all(32),
+                                padding: const EdgeInsets.all(32),
                                 child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      Text(
+                                      const Text(
                                         'Unete',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
@@ -78,7 +78,7 @@ class Registro extends StatelessWidget {
                                             fontSize: 25,
                                             fontWeight: FontWeight.bold),
                                       ),
-                                      Padding(
+                                      const Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0, 12, 0, 24),
                                         child: Text(
@@ -110,7 +110,7 @@ class _LoginForm extends StatelessWidget {
                 prefixIcon: Icons.wallet_membership_rounded,
               ),
             ),
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             TextFormField(
               autocorrect: false,
               obscureText: true,
@@ -127,7 +127,7 @@ class _LoginForm extends StatelessWidget {
               },
             ),
             // SizedBox(height: 10.0),
-            SizedBox(
+            const SizedBox(
               width: double.infinity,
               child: Padding(
                 padding: EdgeInsets.only(top: 20, bottom: 20),
