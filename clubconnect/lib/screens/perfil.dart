@@ -10,17 +10,27 @@ class Perfil extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Perfil'),
       ),
-      body: Stack(
-        alignment: Alignment.center,
+      body: Column(
         children: [
-          Container(
-              color: Colors.black.withOpacity(0.5), // Ajusta la opacidad según tus necesidades
-              child: const CoverImage(),
-            ),
-          const Positioned.fill(
-            child: ImagePickerWidget(),
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                color: Colors.black.withOpacity(0.5),
+                child: const CoverImage(),
+              ),
+              const Positioned.fill(
+                child: ImagePickerWidget(),
+              ),
+            ],
           ),
-        ]
+          SizedBox(height: 20), // Espacio entre el Stack y el siguiente contenedor
+          Container(
+            width: 200,
+            height: 100,
+            color: Colors.red, // Puedes ajustar el color según tus necesidades
+          ),
+        ],
       ),
     );
   }

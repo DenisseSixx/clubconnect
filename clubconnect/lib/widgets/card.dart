@@ -5,7 +5,6 @@ class CardClases extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
       width: MediaQuery.of(context).size.width,
@@ -35,12 +34,13 @@ class CardClases extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          Align(
+          const Align(
+            alignment: Alignment.center,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 5.0),
+              padding: EdgeInsets.symmetric(horizontal: 5.0),
               child: Text(
                 'title',
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 19,
                 ),
                 overflow: TextOverflow.ellipsis,
@@ -48,7 +48,6 @@ class CardClases extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
-            alignment: Alignment.center,
           ),
           Align(
             alignment: Alignment.bottomLeft,
@@ -70,7 +69,7 @@ class CardClases extends StatelessWidget {
                         size: 18,
                       ),
                       SizedBox(width: 7),
-                     // Text(),
+                      // Text(),
                     ],
                   ),
                 ),
@@ -81,15 +80,15 @@ class CardClases extends StatelessWidget {
                     color: Colors.black.withOpacity(0.4),
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  child: Row(
+                  child: const Row(
                     children: [
-                      const Icon(
+                      Icon(
                         Icons.schedule,
                         color: Colors.yellow,
                         size: 18,
                       ),
-                      const SizedBox(width: 7),
-                    //  Text(cookTime),
+                      SizedBox(width: 7),
+                      //  Text(cookTime),
                     ],
                   ),
                 )

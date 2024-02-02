@@ -15,30 +15,27 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'ClubConnect Demo',
-      initialRoute: 'login',
-      theme: ThemeData(
-        brightness: Brightness.light,
-        primarySwatch: Colors.cyan,
-       // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      //  useMaterial3: true, 
-      ),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-         primaryColor: Colors.cyan
-      ),
-      routes: {
-      'login':(_)=> const Login(),
-      'home':(_)=> const home(),
-      'registro':(_)=> const Registro(),
-      'perfil':(_)=>const Perfil(), 
-      'ajustes': (_)=> const settings(), 
-      'notificaciones':(_)=> const noti(),
-      'claseve':(_)=> const even(),
-      'gastos':(_)=> const gastos(), 
-      'asistencias':(_)=> const Asistencias(),
-      }
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'ClubConnect Demo',
+        initialRoute: 'login',
+        theme: ThemeData(
+          brightness: Brightness.light,
+          primarySwatch: Colors.cyan,
+          // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          //  useMaterial3: true,
+        ),
+        darkTheme:
+            ThemeData(brightness: Brightness.dark, primaryColor: Colors.cyan),
+        routes: {
+          'login': (_) => const Login(),
+          'home': (_) => const home(),
+          'registro': (_) => const Registro(),
+          'perfil': (_) => const Perfil(),
+          'ajustes': (_) => const settings(),
+          'notificaciones': (_) => const noti(),
+          'claseve': (_) => const even(),
+          'gastos': (_) => const gastos(),
+          'asistencias': (_) => const RegistroH(),
+        });
   }
 }
