@@ -1,11 +1,14 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:clubconnect/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
+import '../providers/login_form_provider.dart';
+import '../services/authservice.dart';
 import '../ui/input_decoration.dart';
 
 class Login extends StatelessWidget {
-  const Login({super.key});
+  const Login({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -106,8 +109,11 @@ class Login extends StatelessWidget {
 class _LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final loginForm = Provider.of<LoginFormProvider>(context);
+
     return Container(
       child: Form(
+        key: loginForm.formKey,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Column(
           children: [
@@ -141,9 +147,31 @@ class _LoginForm extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(top: 20, bottom: 20),
                 child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, 'home');
-                  },
+                  onPressed: loginForm.isLoading
+                      ? null
+                      : () async {
+                          FocusScope.of(context).unfocus();
+                          final authService =
+                              Provider.of<AuthService>(context, listen: false);
+
+                          if (!loginForm.isValidForm()) return;
+
+                          loginForm.isLoading = true;
+
+                          // TODO: validar si el login es correcto
+                          final String? errorMessage =
+                              await authService.login(
+                                  loginForm.email, loginForm.password);
+
+                          if (errorMessage == null) {
+                            Navigator.pushReplacementNamed(context, 'home');
+                          } else {
+                            // TODO: mostrar error en pantalla
+                            // print( errorMessage );
+                            //    NotificationsService.showSnackbar(errorMessage);
+                            loginForm.isLoading = false;
+                          }
+                        },
                   child: Text('Iniciar Sesión'),
                 ),
               ),
