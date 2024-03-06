@@ -1,14 +1,14 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:clubconnect/widgets/widgets.dart';
+//import 'package:clubconnect/widgets/widgets.dart';
 import 'package:provider/provider.dart';
-
 import '../providers/login_form_provider.dart';
 import '../services/authservice.dart';
 import '../ui/input_decoration.dart';
 
+
 class Login extends StatelessWidget {
-  const Login({Key? key});
+  const Login({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,21 +23,21 @@ class Login extends StatelessWidget {
             end: AlignmentDirectional(-0.87, 1),
           ),
         ),
-        alignment: AlignmentDirectional(0, -1),
+        alignment: const AlignmentDirectional(0, -1),
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 70, 0, 32),
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 70, 0, 32),
                 child: Container(
                   width: 200,
                   height: 70,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
                   ),
-                  alignment: AlignmentDirectional(0, 0),
+                  alignment: const AlignmentDirectional(0, 0),
                   child: const Text(
                     'ClubConnect',
                     style: TextStyle(
@@ -49,15 +49,15 @@ class Login extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 child: Container(
                   width: double.infinity,
-                  constraints: BoxConstraints(
+                  constraints: const BoxConstraints(
                     maxWidth: 570,
                   ),
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                         blurRadius: 4,
                         color: Color(0x33000000),
@@ -67,14 +67,14 @@ class Login extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Align(
-                    alignment: AlignmentDirectional(0, 0),
+                    alignment: const AlignmentDirectional(0, 0),
                     child: Padding(
-                      padding: EdgeInsets.all(32),
+                      padding: const EdgeInsets.all(32),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             'Bienvenido',
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -83,7 +83,7 @@ class Login extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Padding(
+                          const Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 12, 0, 24),
                             child: Text(
@@ -91,7 +91,10 @@ class Login extends StatelessWidget {
                               textAlign: TextAlign.center,
                             ),
                           ),
-                          _LoginForm(), // Agregué _LoginForm como un widget
+                            ChangeNotifierProvider(
+                create: (_) => LoginFormProvider(),
+                child: _LoginForm(),
+                             ) // Agregué _LoginForm como un widget
                         ],
                       ),
                     ),
@@ -125,17 +128,19 @@ class _LoginForm extends StatelessWidget {
                 labelText: 'Membresia',
                 prefixIcon: Icons.wallet_membership_rounded,
               ),
+               onChanged: (value) => loginForm.codUsuario = value,
             ),
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             TextFormField(
               autocorrect: false,
               obscureText: true,
-              keyboardType: TextInputType.emailAddress,
+              keyboardType: TextInputType.text,
               decoration: InputDecorations.authInputDecoration(
                 hintText: '*****',
                 labelText: 'Contraseña',
                 prefixIcon: Icons.lock_outline,
               ),
+               onChanged: (value) => loginForm.claUsuario = value,
               validator: (value) {
                 return (value != null && value.length >= 6)
                     ? null
@@ -145,7 +150,7 @@ class _LoginForm extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: Padding(
-                padding: EdgeInsets.only(top: 20, bottom: 20),
+                padding: const EdgeInsets.only(top: 20, bottom: 20),
                 child: ElevatedButton(
                   onPressed: loginForm.isLoading
                       ? null
@@ -161,34 +166,34 @@ class _LoginForm extends StatelessWidget {
                           // TODO: validar si el login es correcto
                           final String? errorMessage =
                               await authService.login(
-                                  loginForm.email, loginForm.password);
+                                  loginForm.codUsuario, loginForm.claUsuario);
 
                           if (errorMessage == null) {
                             Navigator.pushReplacementNamed(context, 'home');
                           } else {
                             // TODO: mostrar error en pantalla
-                            // print( errorMessage );
+                            print( errorMessage );
                             //    NotificationsService.showSnackbar(errorMessage);
                             loginForm.isLoading = false;
                           }
                         },
-                  child: Text('Iniciar Sesión'),
+                  child: const Text('Iniciar Sesión'),
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
               child: RichText(
                 textScaleFactor: MediaQuery.of(context).textScaleFactor,
                 text: TextSpan(
                   children: [
-                    TextSpan(
+                    const TextSpan(
                       text: '¿No tienes una cuenta? ',
                       style: TextStyle(),
                     ),
                     TextSpan(
                       text: 'Registrate',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontFamily: 'Readex Pro',
                         color: Colors.blueGrey,
                         fontWeight: FontWeight.w600,
@@ -199,7 +204,7 @@ class _LoginForm extends StatelessWidget {
                         },
                     )
                   ],
-                  style: TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.black),
                 ),
               ),
             ),

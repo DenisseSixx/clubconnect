@@ -287,12 +287,12 @@ class _RegistroHState extends State<RegistroH> {
                                           // Cierra el AlertDialog y no realiza ninguna acción
                                           Navigator.of(context).pop();
                                         },
-                                        style: ElevatedButton.styleFrom(
-                                          primary: Colors
-                                              .red, // Color de fondo del botón
-                                          onPrimary: Colors
-                                              .white, // Color del texto del botón
-                                        ),
+                                        // style: ElevatedButton.styleFrom(
+                                        //   primary: Colors
+                                        //       .red, // Color de fondo del botón
+                                        //   onPrimary: Colors
+                                        //       .white, // Color del texto del botón
+                                        // ),
                                         child: const Text(
                                           'Cancelar',
                                           style: TextStyle(
@@ -411,11 +411,11 @@ class _RegistroHState extends State<RegistroH> {
                             // Cierra el AlertDialog y no realiza ninguna acción
                             Navigator.of(context).pop();
                           },
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.red, // Color de fondo del botón
-                            onPrimary:
-                                Colors.white, // Color del texto del botón
-                          ),
+                          // style: ElevatedButton.styleFrom(
+                          //   primary: Colors.red, // Color de fondo del botón
+                          //   onPrimary:
+                          //       Colors.white, // Color del texto del botón
+                          // ),
                           child: const Text(
                             'Cancelar',
                             style: TextStyle(

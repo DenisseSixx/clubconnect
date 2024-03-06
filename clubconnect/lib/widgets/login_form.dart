@@ -1,10 +1,13 @@
-import 'package:flutter/gestures.dart';
+/*import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../providers/login_form_provider.dart';
 import '../ui/input_decoration.dart';
 
 class _LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+       final loginForm = Provider.of<LoginFormProvider>(context);
     return Container(
       child: Form(
         autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -86,4 +89,4 @@ class _LoginForm extends StatelessWidget {
       ),
     );
   }
-}
+}*/
