@@ -1,8 +1,43 @@
+import 'package:clubconnect/models/usuarios_response.dart';
+import 'package:clubconnect/services/authservice.dart';
+import 'package:clubconnect/widgets/CoverImage_widget.dart';
+import 'package:clubconnect/widgets/Image_widget.dart';
+import 'package:clubconnect/widgets/InfoCard.dart';
 import 'package:flutter/material.dart';
-import 'package:clubconnect/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
-class Perfil extends StatelessWidget {
-  const Perfil({Key? key});
+class Perfil extends StatefulWidget {
+  const Perfil({Key? key}) : super(key: key);
+
+  @override
+  _PerfilState createState() => _PerfilState();
+}
+
+class _PerfilState extends State<Perfil> {
+  Usuario? datos;
+
+  @override
+  void initState() {
+    super.initState();
+    cargarDatos();
+  }
+
+  Future<void> cargarDatos() async {
+    final CodUsuario =
+        await Provider.of<AuthService>(context, listen: false).getUserId();
+    print('UserID: $CodUsuario');
+    if (CodUsuario != null) {
+      final Map<String, dynamic> userData =
+          await Provider.of<AuthService>(context, listen: false)
+              .obtenerUsuarioPorId(CodUsuario);
+      print('UserData: $userData');
+      if (userData.isNotEmpty) {
+        setState(() {
+          datos = Usuario.fromJson(userData);
+        });
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -10,27 +45,60 @@ class Perfil extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Perfil'),
       ),
-      body: Column(
-        children: [
-          Stack(
-            alignment: Alignment.center,
+      body: SingleChildScrollView(
+        child: Container(
+          height: MediaQuery.of(context)
+              .size
+              .height, // Establece la altura del contenedor como la altura de la pantalla
+          child: Column(
             children: [
-              Container(
-                color: Colors.black.withOpacity(0.5),
-                child: const CoverImage(),
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  Container(
+                    color: Colors.black.withOpacity(0.5),
+                    child: const CoverImage(),
+                  ),
+                  const Positioned.fill(
+                    child: ImagePickerWidget(),
+                  ),
+                ],
               ),
-              const Positioned.fill(
-                child: ImagePickerWidget(),
+              InfoCard(
+                text: "Nombre   ",
+                dato: '${datos?.nomUsuario ?? ""}',
+                icon: Icons.supervised_user_circle,
+                onPressed: () async {},
+              ),
+              InfoCard(
+                text: "Correo  ",
+                dato: '${datos?.correo ?? ""}',
+                icon: Icons.email,
+                onPressed: () async {},
+              ),
+              InfoCard(
+                text: "Código  ",
+                dato: '${datos?.codUsuario ?? ""}',
+                icon: Icons.abc,
+                onPressed: () async {},
+              ),
+              InfoCard(
+                text: "Nombre   ",
+                dato: '${datos?.nomUsuario ?? ""}',
+                icon: Icons.verified_user_sharp,
+                onPressed: () async {},
+              ),
+                InfoCard(
+                text: "Administrar dependientes",
+                dato: '', 
+                icon: Icons.add, 
+                onPressed: () {
+                 Navigator.pushNamed(context, 'dependientes');
+                 },
               ),
             ],
           ),
-          SizedBox(height: 20), // Espacio entre el Stack y el siguiente contenedor
-          Container(
-            width: 200,
-            height: 100,
-            color: Colors.red, // Puedes ajustar el color según tus necesidades
-          ),
-        ],
+        ),
       ),
     );
   }

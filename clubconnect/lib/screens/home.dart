@@ -32,7 +32,7 @@ class home extends StatelessWidget {
           height: 200,
         )
       ])),
-      drawer: MenuDrawer(),
+      drawer: MenuDrawer(usuario: [],),
     );
   }
 }

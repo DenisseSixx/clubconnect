@@ -6,7 +6,6 @@ import '../providers/login_form_provider.dart';
 import '../services/authservice.dart';
 import '../ui/input_decoration.dart';
 
-
 class Login extends StatelessWidget {
   const Login({super.key});
 
@@ -91,10 +90,10 @@ class Login extends StatelessWidget {
                               textAlign: TextAlign.center,
                             ),
                           ),
-                            ChangeNotifierProvider(
-                create: (_) => LoginFormProvider(),
-                child: _LoginForm(),
-                             ) // Agregué _LoginForm como un widget
+                          ChangeNotifierProvider(
+                            create: (_) => LoginFormProvider(),
+                            child: _LoginForm(),
+                          ) // Agregué _LoginForm como un widget
                         ],
                       ),
                     ),
@@ -109,7 +108,14 @@ class Login extends StatelessWidget {
   }
 }
 
-class _LoginForm extends StatelessWidget {
+class _LoginForm extends StatefulWidget {
+  @override
+  _LoginFormState createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<_LoginForm> {
+  bool _obscureText = true;
+
   @override
   Widget build(BuildContext context) {
     final loginForm = Provider.of<LoginFormProvider>(context);
@@ -128,19 +134,32 @@ class _LoginForm extends StatelessWidget {
                 labelText: 'Membresia',
                 prefixIcon: Icons.wallet_membership_rounded,
               ),
-               onChanged: (value) => loginForm.codUsuario = value,
+              onChanged: (value) => loginForm.codUsuario = value,
             ),
             const SizedBox(height: 10.0),
             TextFormField(
               autocorrect: false,
-              obscureText: true,
+              obscureText: _obscureText,
               keyboardType: TextInputType.text,
-              decoration: InputDecorations.authInputDecoration(
+              decoration: InputDecoration(
                 hintText: '*****',
                 labelText: 'Contraseña',
-                prefixIcon: Icons.lock_outline,
+                prefixIcon: Icon(
+                  Icons.lock_outline,
+                  color: Colors.green,
+                ),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _obscureText ? Icons.visibility_off : Icons.visibility,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _obscureText = !_obscureText;
+                    });
+                  },
+                ),
               ),
-               onChanged: (value) => loginForm.claUsuario = value,
+              onChanged: (value) => loginForm.claUsuario = value,
               validator: (value) {
                 return (value != null && value.length >= 6)
                     ? null
@@ -164,15 +183,14 @@ class _LoginForm extends StatelessWidget {
                           loginForm.isLoading = true;
 
                           // TODO: validar si el login es correcto
-                          final String? errorMessage =
-                              await authService.login(
-                                  loginForm.codUsuario, loginForm.claUsuario);
+                          final String? errorMessage = await authService.login(
+                              loginForm.codUsuario, loginForm.claUsuario);
 
                           if (errorMessage == null) {
                             Navigator.pushReplacementNamed(context, 'home');
                           } else {
                             // TODO: mostrar error en pantalla
-                            print( errorMessage );
+                            print(errorMessage);
                             //    NotificationsService.showSnackbar(errorMessage);
                             loginForm.isLoading = false;
                           }

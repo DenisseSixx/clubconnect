@@ -1,7 +1,9 @@
+import 'package:clubconnect/models/usuarios_response.dart';
 import 'package:clubconnect/providers/login_form_provider.dart';
 import 'package:clubconnect/screens/asistencias.dart';
 import 'package:clubconnect/screens/claseseve.dart';
 import 'package:clubconnect/screens/gastos.dart';
+import 'package:clubconnect/screens/registrodep.dart';
 import 'package:clubconnect/services/authservice.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -59,6 +61,7 @@ class MyApp extends StatelessWidget {
           'claseve': (_) => const even(),
           'gastos': (_) => const gastos(),
           'asistencias': (_) => const RegistroH(),
+          'dependientes': (_) => const RegistroDep()
         });
         
   }
