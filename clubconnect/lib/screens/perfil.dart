@@ -83,17 +83,26 @@ class _PerfilState extends State<Perfil> {
                 onPressed: () async {},
               ),
               InfoCard(
-                text: "Nombre   ",
-                dato: '${datos?.nomUsuario ?? ""}',
+                text: "Membresia   ",
+                dato: '${datos?.codTercero ?? ""}',
                 icon: Icons.verified_user_sharp,
                 onPressed: () async {},
               ),
+              
                 InfoCard(
                 text: "Administrar dependientes",
                 dato: '', 
                 icon: Icons.add, 
                 onPressed: () {
                  Navigator.pushNamed(context, 'dependientes');
+                 },
+              ),
+               InfoCard(
+                text: "Documentos",
+                dato: '', 
+                icon: Icons.edit_document, 
+                onPressed: () {
+                 Navigator.pushNamed(context, 'documentos');
                  },
               ),
             ],

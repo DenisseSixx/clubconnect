@@ -2,9 +2,11 @@ import 'package:clubconnect/models/usuarios_response.dart';
 import 'package:clubconnect/providers/login_form_provider.dart';
 import 'package:clubconnect/screens/asistencias.dart';
 import 'package:clubconnect/screens/claseseve.dart';
+import 'package:clubconnect/screens/documentos.dart';
 import 'package:clubconnect/screens/gastos.dart';
 import 'package:clubconnect/screens/registrodep.dart';
 import 'package:clubconnect/services/authservice.dart';
+import 'package:clubconnect/services/notification_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'screens/screens.dart';
@@ -40,6 +42,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) { 
     return MaterialApp(
+      scaffoldMessengerKey: NotificationsService.messengerKey,
         debugShowCheckedModeBanner: false,
         title: 'ClubConnect Demo',
         initialRoute: 'login',
@@ -59,9 +62,10 @@ class MyApp extends StatelessWidget {
           'ajustes': (_) => const settings(),
           'notificaciones': (_) => const noti(),
           'claseve': (_) => const even(),
-          'gastos': (_) => const gastos(),
+          'gastos': (_) => const Gastos(),
           'asistencias': (_) => const RegistroH(),
-          'dependientes': (_) => const RegistroDep()
+          'dependientes': (_) => const RegistroDep(),
+          'documentos': (_) => const Documentos()
         });
         
   }

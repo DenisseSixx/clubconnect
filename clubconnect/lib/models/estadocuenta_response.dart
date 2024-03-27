@@ -1,25 +1,23 @@
-import 'package:flutter/material.dart';
-
-class EstadoCuenta1 {
-  late DateTime codPeriodo;
-  late int codImporte;
-  late String codTipo;
-  late String codSubtipo;
-  late String titulo;
-  late double desImporte;
-  late double montoOriginal;
-  late double monAdeudoAnterior;
-  late double monAdeudoAnteriorSinRecargo;
-  late double recargo;
-  late double monAbono;
-  late double bonificacion;
-  late double montoDescuento;
-  late double monSubtotalAdeudo;
-  late double porIva;
-  late double monIvaAdeudo;
-  late double monTotalAdeudo;
-  late double aFavorAplicado;
-  late double cobradoAplicado;
+class EstadoCuenta1{
+  DateTime codPeriodo;
+  double codImporte;
+  String codTipo;
+  String codSubtipo;
+  String titulo;
+  String desImporte;
+  double montoOriginal;
+  double monAdeudoAnterior;
+  double monAdeudoAnteriorSinRecargo;
+  double recargo;
+  double monAbono;
+  double bonificacion;
+  double montoDescuento;
+  double monSubtotalAdeudo;
+  double porIva;
+  double monIvaAdeudo;
+  double monTotalAdeudo;
+  double aFavorAplicado;
+  double cobradoAplicado;
 
   EstadoCuenta1({
     required this.codPeriodo,
@@ -43,49 +41,27 @@ class EstadoCuenta1 {
     required this.cobradoAplicado,
   });
 
-  EstadoCuenta1.fromJson(Map<String, dynamic> json) {
-    codPeriodo = DateTime.parse(json['codPeriodo']);
-    codImporte = json['codImporte'];
-    codTipo = json['codTipo'];
-    codSubtipo = json['codSubtipo'];
-    titulo = json['titulo'];
-    desImporte = json['desImporte'];
-    montoOriginal = json['montoOriginal'];
-    monAdeudoAnterior = json['monAdeudoAnterior'];
-    monAdeudoAnteriorSinRecargo = json['monAdeudoAnteriorSinRecargo'];
-    recargo = json['recargo'];
-    monAbono = json['monAbono'];
-    bonificacion = json['bonificacion'];
-    montoDescuento = json['montoDescuento'];
-    monSubtotalAdeudo = json['monSubtotalAdeudo'];
-    porIva = json['porIva'];
-    monIvaAdeudo = json['monIvaAdeudo'];
-    monTotalAdeudo = json['monTotalAdeudo'];
-    aFavorAplicado = json['aFavorAplicado'];
-    cobradoAplicado = json['cobradoAplicado'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['codPeriodo'] = codPeriodo.toIso8601String();
-    data['codImporte'] = codImporte;
-    data['codTipo'] = codTipo;
-    data['codSubtipo'] = codSubtipo;
-    data['titulo'] = titulo;
-    data['desImporte'] = desImporte;
-    data['montoOriginal'] = montoOriginal;
-    data['monAdeudoAnterior'] = monAdeudoAnterior;
-    data['monAdeudoAnteriorSinRecargo'] = monAdeudoAnteriorSinRecargo;
-    data['recargo'] = recargo;
-    data['monAbono'] = monAbono;
-    data['bonificacion'] = bonificacion;
-    data['montoDescuento'] = montoDescuento;
-    data['monSubtotalAdeudo'] = monSubtotalAdeudo;
-    data['porIva'] = porIva;
-    data['monIvaAdeudo'] = monIvaAdeudo;
-    data['monTotalAdeudo'] = monTotalAdeudo;
-    data['aFavorAplicado'] = aFavorAplicado;
-    data['cobradoAplicado'] = cobradoAplicado;
-    return data;
+  factory EstadoCuenta1.fromJson(Map<String, dynamic> json) {
+    return EstadoCuenta1(
+      codPeriodo: DateTime.parse(json['codPeriodo']),
+      codImporte: json['codImporte'].toDouble(),
+      codTipo: json['codTipo'],
+      codSubtipo: json['codSubtipo'],
+      titulo: json['titulo'],
+      desImporte: json['desImporte'],
+      montoOriginal: json['montoOriginal'].toDouble(),
+      monAdeudoAnterior: json['monAdeudoAnterior'].toDouble(),
+      monAdeudoAnteriorSinRecargo: json['monAdeudoAnteriorSinRecargo'].toDouble(),
+      recargo: json['recargo'].toDouble(),
+      monAbono: json['monAbono'].toDouble(),
+      bonificacion: json['bonificacion'].toDouble(),
+      montoDescuento: json['montoDescuento'].toDouble(),
+      monSubtotalAdeudo: json['monSubtotalAdeudo'].toDouble(),
+      porIva: json['porIva'].toDouble(),
+      monIvaAdeudo: json['monIvaAdeudo'].toDouble(),
+      monTotalAdeudo: json['monTotalAdeudo'].toDouble(),
+      aFavorAplicado: json['aFavorAplicado'].toDouble(),
+      cobradoAplicado: json['cobradoAplicado'].toDouble(),
+    );
   }
 }

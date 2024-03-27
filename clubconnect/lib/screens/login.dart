@@ -1,3 +1,4 @@
+import 'package:clubconnect/services/notification_service.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 //import 'package:clubconnect/widgets/widgets.dart';
@@ -131,7 +132,7 @@ class _LoginFormState extends State<_LoginForm> {
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecorations.authInputDecoration(
                 hintText: '645',
-                labelText: 'Membresia',
+                labelText: 'Código usuario',
                 prefixIcon: Icons.wallet_membership_rounded,
               ),
               onChanged: (value) => loginForm.codUsuario = value,
@@ -181,20 +182,47 @@ class _LoginFormState extends State<_LoginForm> {
                           if (!loginForm.isValidForm()) return;
 
                           loginForm.isLoading = true;
+    try {
+        // Obtener el código de dependiente
+        final codDependiente = await authService.getCodDependiente(loginForm.codUsuario);
 
-                          // TODO: validar si el login es correcto
-                          final String? errorMessage = await authService.login(
-                              loginForm.codUsuario, loginForm.claUsuario);
+        if (codDependiente == 0) {
+          // Si el código de dependiente es 0, permitir acceso directo
+          final String? errorMessage = await authService.login(
+            loginForm.codUsuario, loginForm.claUsuario);
 
-                          if (errorMessage == null) {
-                            Navigator.pushReplacementNamed(context, 'home');
-                          } else {
-                            // TODO: mostrar error en pantalla
-                            print(errorMessage);
-                            //    NotificationsService.showSnackbar(errorMessage);
-                            loginForm.isLoading = false;
-                          }
-                        },
+          if (errorMessage == null) {
+            Navigator.pushReplacementNamed(context, 'home');
+          } else {
+            NotificationsService.showSnackbar(errorMessage, backgroundColor: Colors.red);
+            loginForm.isLoading = false;
+          }
+        } else {
+          // Si el usuario tiene un código de dependiente diferente de 0, verificar autorización
+          final autorizado = await authService.verificarAutorizacion(loginForm.codUsuario);
+
+          if (!autorizado) {
+            NotificationsService.showSnackbar('Usuario no autorizado', backgroundColor: Colors.red);
+            loginForm.isLoading = false;
+            return;
+          }
+
+          // Intentar iniciar sesión si el usuario está autorizado
+          final String? errorMessage = await authService.login(
+            loginForm.codUsuario, loginForm.claUsuario);
+
+          if (errorMessage == null) {
+            Navigator.pushReplacementNamed(context, 'home');
+          } else {
+            NotificationsService.showSnackbar(errorMessage, backgroundColor: Colors.red);
+            loginForm.isLoading = false;
+          }
+        }
+      } catch (e) {
+        NotificationsService.showSnackbar('Error: $e', backgroundColor: Colors.red);
+        loginForm.isLoading = false;
+      }
+    },
                   child: const Text('Iniciar Sesión'),
                 ),
               ),
