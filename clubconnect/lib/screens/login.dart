@@ -145,7 +145,7 @@ class _LoginFormState extends State<_LoginForm> {
               decoration: InputDecoration(
                 hintText: '*****',
                 labelText: 'Contraseña',
-                prefixIcon: Icon(
+                prefixIcon: const Icon(
                   Icons.lock_outline,
                   color: Colors.green,
                 ),

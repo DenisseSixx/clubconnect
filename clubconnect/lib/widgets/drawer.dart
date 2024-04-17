@@ -65,26 +65,26 @@ class _MenuDrawerState extends State<MenuDrawer> {
           Navigator.pushReplacementNamed(context, 'login');
         },
       ),
-      ListTile(
-        leading: const Icon(Icons.exit_to_app),
-        title: const Text('Registro de asistencias'),
-        onTap: () {
-          Navigator.pushReplacementNamed(context, 'asistencias');
-        },
-      ),
-    ];
+    //   ListTile(
+    //     leading: const Icon(Icons.exit_to_app),
+    //     title: const Text('Registro de asistencias'),
+    //     onTap: () {
+    //       Navigator.pushReplacementNamed(context, 'asistencias');
+    //     },
+    //   ),
 
-    if (rol == true) {
-      drawerItems.add(
-        ListTile(
-          leading: const Icon(Icons.exit_to_app),
-          title: const Text('Registro de asistencias'),
-          onTap: () {
-            Navigator.pushReplacementNamed(context, 'asistencias');
-          },
-        ),
-      );
-    }
+    // if (rol == true) {
+    //   drawerItems.add(
+    //     ListTile(
+    //       leading: const Icon(Icons.exit_to_app),
+    //       title: const Text('Registro de asistencias'),
+    //       onTap: () {
+    //         Navigator.pushReplacementNamed(context, 'asistencias');
+    //       },
+    //     ),
+    //   );*/
+    // }
+    ];
 
     return Drawer(
       child: ListView(

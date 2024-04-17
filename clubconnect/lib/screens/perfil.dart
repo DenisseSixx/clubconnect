@@ -1,9 +1,11 @@
 import 'package:clubconnect/models/usuarios_response.dart';
 import 'package:clubconnect/services/authservice.dart';
+import 'package:clubconnect/widgets/CardInfoLeading.dart';
 import 'package:clubconnect/widgets/CoverImage_widget.dart';
 import 'package:clubconnect/widgets/Image_widget.dart';
 import 'package:clubconnect/widgets/InfoCard.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class Perfil extends StatefulWidget {
@@ -43,8 +45,21 @@ class _PerfilState extends State<Perfil> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Perfil'),
+    title: Text(
+      'Perfil',
+      style: GoogleFonts.barlowCondensed(
+        textStyle: const TextStyle(fontSize: 24), 
       ),
+    ),
+       backgroundColor: Colors.cyan[100],
+    elevation: 4, // Establece la elevación para agregar sombra
+    shadowColor: Colors.blueGrey, // Establece el color de la sombra
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(
+        bottom: Radius.circular(15), // Establece la forma de la parte inferior del AppBar
+      ),
+    ),
+  ),
       body: SingleChildScrollView(
         child: Container(
           height: MediaQuery.of(context)
@@ -68,28 +83,28 @@ class _PerfilState extends State<Perfil> {
                 text: "Nombre   ",
                 dato: '${datos?.nomUsuario ?? ""}',
                 icon: Icons.supervised_user_circle,
-                onPressed: () async {},
+              
               ),
               InfoCard(
                 text: "Correo  ",
                 dato: '${datos?.correo ?? ""}',
                 icon: Icons.email,
-                onPressed: () async {},
+               
               ),
               InfoCard(
                 text: "Código  ",
                 dato: '${datos?.codUsuario ?? ""}',
                 icon: Icons.abc,
-                onPressed: () async {},
+               
               ),
               InfoCard(
                 text: "Membresia   ",
                 dato: '${datos?.codTercero ?? ""}',
                 icon: Icons.verified_user_sharp,
-                onPressed: () async {},
+               
               ),
-              
-                InfoCard(
+              if(datos?.codDependiente == 0)
+                CardInfoLeading(
                 text: "Administrar dependientes",
                 dato: '', 
                 icon: Icons.add, 
@@ -97,7 +112,8 @@ class _PerfilState extends State<Perfil> {
                  Navigator.pushNamed(context, 'dependientes');
                  },
               ),
-               InfoCard(
+              
+               CardInfoLeading(
                 text: "Documentos",
                 dato: '', 
                 icon: Icons.edit_document, 

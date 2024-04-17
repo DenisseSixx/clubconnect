@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
@@ -148,7 +149,7 @@ class Gastos extends StatelessWidget {
                            ) ],
 ),
                             
-Expanded(
+Flexible(
   child: Container(
     color: const Color.fromARGB(255, 236, 253, 255),// Establecer el color de fondo del contenedor como cyan
     child: ListView.builder(

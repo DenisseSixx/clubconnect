@@ -5,7 +5,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 class AuthService extends ChangeNotifier {
-  final String _UrlBase = '10.0.0.18:5272';
+  final String _UrlBase = '10.0.0.19:5272';
 
   final storage = new FlutterSecureStorage();
 
@@ -393,6 +393,34 @@ class AuthService extends ChangeNotifier {
       throw Exception('Error al conectarse al servidor: $e');
     }
   }
+  Future<void> CambiarContrasena(
+  String codUsuario, String claUsuario) async {
+  final url = Uri.http(_UrlBase,
+      '/api/Appusuarios/EditarContrasena/$codUsuario');
+
+  try {
+    print('Contraseña que se enviará: $claUsuario'); // Imprime la contraseña que se enviará
+    final response = await http.put(
+      url,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(claUsuario),
+    );
+
+    if (response.statusCode == 201) {
+      print('Contraseña actualizada correctamente.');
+    } else if (response.statusCode == 204) {
+      print('Contraseña actualizada correctamente.');
+    } else {
+      print('Error al actualizar la contraseña. Código de estado: ${response.statusCode}');
+    }
+  } catch (error) {
+    print('Error: $error');
+  }
+}
+
+      
 }
 
 

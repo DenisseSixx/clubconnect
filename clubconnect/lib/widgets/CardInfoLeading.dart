@@ -2,24 +2,24 @@ import 'package:clubconnect/ui/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class InfoCard extends StatelessWidget {
+class CardInfoLeading extends StatelessWidget {
   // the values we need
   final String text;
   final String dato;
   final IconData icon;
-  
+  final Function onPressed;
 
-  InfoCard({
+  CardInfoLeading({
     required this.text,
     required this.dato,
     required this.icon,
-  
+    required this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-    
+      onTap: onPressed as void Function()?,
       child: Card(
         color: Colors.white,
         margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
@@ -30,18 +30,15 @@ class InfoCard extends StatelessWidget {
           ),
           title: Text(
             text,
-            style:GoogleFonts.roboto(
+           style:GoogleFonts.roboto(
               color: AppColors.black,
               fontSize: 19,
             ),
+          
           ),
-          subtitle: Text(
-            dato,
-            style:GoogleFonts.roboto(
-              color: AppColors.plomo,
-              fontSize: 17,
-             
-            ),
+          trailing: Icon(
+            Icons.arrow_forward_ios, // Cambiar por el icono de flecha que desees
+            color: Colors.grey,
           ),
         ),
       ),

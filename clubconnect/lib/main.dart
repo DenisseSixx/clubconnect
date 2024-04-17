@@ -1,6 +1,7 @@
 import 'package:clubconnect/models/usuarios_response.dart';
 import 'package:clubconnect/providers/login_form_provider.dart';
 import 'package:clubconnect/screens/asistencias.dart';
+import 'package:clubconnect/screens/cambiocontrasena.dart';
 import 'package:clubconnect/screens/claseseve.dart';
 import 'package:clubconnect/screens/documentos.dart';
 import 'package:clubconnect/screens/gastos.dart';
@@ -59,13 +60,14 @@ class MyApp extends StatelessWidget {
           'home': (_) => const home(),
           'registro': (_) => const Registro(),
           'perfil': (_) => const Perfil(),
-          'ajustes': (_) => const settings(),
+          'ajustes': (_) => const Settings(),
           'notificaciones': (_) => const noti(),
           'claseve': (_) => const even(),
           'gastos': (_) => const Gastos(),
           'asistencias': (_) => const RegistroH(),
           'dependientes': (_) => const RegistroDep(),
-          'documentos': (_) => const Documentos()
+          'documentos': (_) => const Documentos(),
+          'cambiocontra':(_) => const CambioContra()
         });
         
   }
