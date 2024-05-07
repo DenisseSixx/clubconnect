@@ -1,5 +1,5 @@
 class Configuraciones{
-  static String urlBase = '10.0.0.17:5272';
+  static String urlBase = '10.0.0.31:5272';
   static String aliasUrl = "";
   static double ResolucionImagenesAncho = 0;
   static double ResolucionImagenesAlto = 0;

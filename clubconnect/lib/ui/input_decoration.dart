@@ -1,3 +1,4 @@
+import 'package:clubconnect/ui/colors.dart';
 import 'package:flutter/material.dart';
 
 class InputDecorations {
@@ -9,12 +10,12 @@ class InputDecorations {
     return InputDecoration(
         enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
-            color: Colors.green,
+            color: AppColors.azulverde,
           ),
         ),
         focusedBorder: const UnderlineInputBorder(
             borderSide: BorderSide(
-          color: Colors.green,
+          color: AppColors.azulverde,
           width: 2,
         )),
         hintText: hintText,
@@ -25,7 +26,7 @@ class InputDecorations {
         prefixIcon: prefixIcon != null
             ? Icon(
                 prefixIcon,
-                color: Colors.green,
+                color: AppColors.azulverde,
               )
             : null);
             

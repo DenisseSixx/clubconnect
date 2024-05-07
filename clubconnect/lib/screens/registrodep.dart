@@ -1,5 +1,7 @@
 import 'package:clubconnect/models/autorizacion_response.dart';
+import 'package:clubconnect/widgets/GradientScaffold.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:clubconnect/models/dependientes_response.dart';
@@ -20,29 +22,48 @@ class _RegistroDepState extends State<RegistroDep> {
   @override
   void initState() {
     super.initState();
-    cargarEstadoDependientes(context);
+    Future.delayed(Duration.zero, (){
+      cargarEstadoDependientes(context);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Dependientes',
-          style: GoogleFonts.barlowCondensed(
-            textStyle: const TextStyle(fontSize: 24),
-          ),
-        ),
-        backgroundColor: Colors.cyan[100],
-        elevation: 4,
-        shadowColor: Colors.blueGrey,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(15),
-          ),
-        ),
-      ),
-      body: FutureBuilder<List<SaDependiente>>(
+        return GradientScaffold(
+      leading: const Icon(Icons.arrow_back),
+      leadingCallback: () {
+        Navigator.of(context).pop();
+      },
+      body: Container(child: Column(
+          children: [
+            //
+            SizedBox(height: MediaQuery.of(context).size.height * 0.15),
+            Expanded(
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(50),
+                    topLeft:  Radius.zero,
+                  ),
+                ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      SizedBox(height: 20),
+                      const Text(
+                        'Dependientes',
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 20),
+
+                      Expanded(
+                        // padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                 child: FutureBuilder<List<SaDependiente>>(
         future: cargarDependientes(context),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -104,18 +125,23 @@ class _RegistroDepState extends State<RegistroDep> {
                             final codAutorizacion = value ?? false;
                             await Provider.of<AuthService>(context, listen: false)
                                 .updateAppautorizaciond(codTercero, codDependiente, codAutorizacion);
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            );
-          }
-        },
+                              },
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  }
+                },
+              ),
+            ),
+            ]  ),
+        ))  ],
+      
       ),
-    );
+        ));
   }
 
   String _calcularEdad(DateTime fechaNacimiento) {

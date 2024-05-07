@@ -1,3 +1,4 @@
+import 'package:clubconnect/ui/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -13,10 +14,15 @@ class _DocumentosState extends State<Documentos> {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(colors: [AppColors.primaryGreen, AppColors.azul])
+          )
+        ),
         title: Text(
           'Documentos',
           style: GoogleFonts.barlowCondensed(
-            textStyle: const TextStyle(fontSize: 24),
+            textStyle: const TextStyle(fontSize: 24, color: Colors.white),
           ),
         ),
         backgroundColor: Colors.cyan[100],

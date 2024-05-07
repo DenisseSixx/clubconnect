@@ -1,4 +1,5 @@
 import 'package:clubconnect/services/notification_service.dart';
+import 'package:clubconnect/ui/colors.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 //import 'package:clubconnect/widgets/widgets.dart';
@@ -17,7 +18,7 @@ class Login extends StatelessWidget {
         height: double.infinity,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFFA7FCB8), Color(0xFFFFF4E2)],
+            colors: [AppColors.primaryGreen, AppColors.azul],
             stops: [0, 1],
             begin: AlignmentDirectional(0.87, -1),
             end: AlignmentDirectional(-0.87, 1),
@@ -128,6 +129,7 @@ class _LoginFormState extends State<_LoginForm> {
         child: Column(
           children: [
             TextFormField(
+              onTapOutside: (event) => FocusManager.instance.primaryFocus?.unfocus(),
               autocorrect: false,
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecorations.authInputDecoration(
@@ -139,15 +141,21 @@ class _LoginFormState extends State<_LoginForm> {
             ),
             const SizedBox(height: 10.0),
             TextFormField(
+              onTapOutside: (event) => FocusManager.instance.primaryFocus?.unfocus(),
               autocorrect: false,
               obscureText: _obscureText,
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
+                    focusedBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(
+          color: AppColors.azulverde,
+          width: 2,
+        )),
                 hintText: '*****',
                 labelText: 'Contraseña',
                 prefixIcon: const Icon(
                   Icons.lock_outline,
-                  color: Colors.green,
+                  color: AppColors.azulverde,
                 ),
                 suffixIcon: IconButton(
                   icon: Icon(
@@ -159,6 +167,7 @@ class _LoginFormState extends State<_LoginForm> {
                     });
                   },
                 ),
+                
               ),
               onChanged: (value) => loginForm.claUsuario = value,
               validator: (value) {
@@ -223,7 +232,10 @@ class _LoginFormState extends State<_LoginForm> {
         loginForm.isLoading = false;
       }
     },
-                  child: const Text('Iniciar Sesión'),
+     style: ElevatedButton.styleFrom(
+    backgroundColor: AppColors.azul
+    ),
+                  child: const Text('Iniciar Sesión', style: TextStyle(color: Colors.white, fontSize: 17), ),
                 ),
               ),
             ),

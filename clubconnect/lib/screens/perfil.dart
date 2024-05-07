@@ -21,7 +21,9 @@ class _PerfilState extends State<Perfil> {
   @override
   void initState() {
     super.initState();
+     Future.delayed(Duration.zero, (){
     cargarDatos();
+     });
   }
 
   Future<void> cargarDatos() async {
